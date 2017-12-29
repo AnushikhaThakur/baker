@@ -10,8 +10,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1> Displaying Add_Category Page</h1>
+<h1> Displaying Categories </h1>
 <table border="1">
+<tr>
+<td><strong>Category_Id</strong></td>
+<td><strong>Category_Name</strong></td>
+</tr> 
+
 <c:forEach var="x" items="${catlist}">
 <tr>
 <td>${ x.getCategory_Id()}</td>
