@@ -20,7 +20,7 @@
 <tr>
 <td>${ f.getItem_Id()}</td>
 <td>${ f.getItems_Category()}</td>
-<td><a href="product_details/${ f.getItem_Id()}">${ f.getItem_Name()}</a></td>
+<td>${ f.getItem_Name()}</td>
 <td>${ f.getItem_Price()}</td>
 <td>${ f.getContainsEggOrEggless()}</td>
 <td><a href="${pageContext.request.contextPath}/DeleteItemsFromDB/${f.getItem_Id()}">delete</a></td>
