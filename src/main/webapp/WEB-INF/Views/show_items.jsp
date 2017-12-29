@@ -10,13 +10,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1> Displaying product Page</h1>
+<h1> Displaying items Page</h1>
 <table border="1">
 <c:forEach var="z" items="${Item_list}">
 <tr>
 <td>${ z.getItem_Id()}</td>
 <td>${ z.getItems_Category()}</td>
-<td>${ Z.getItem_Name()}</td>
+<td>${ z.getItem_Name()}</td>
 <td>${ z.getItem_Price()}</td>
 <td>${ z.getContainsEggOrEggless()}</td>
 <td><a href="DeleteItemsFromDB/${z.getItem_Id()}">delete</a></td>
