@@ -23,8 +23,8 @@
 <td><a href="product_details/${ f.getItem_Id()}">${ f.getItem_Name()}</a></td>
 <td>${ f.getItem_Price()}</td>
 <td>${ f.getContainsEggOrEggless()}</td>
-<td><a href="DeleteItemsFromDB/${f.getItem_Id()}">delete</a></td>
-		<td><a href="update_items/${f.getItem_Id()}">update</a></td>
+<td><a href="${pageContext.request.contextPath}/DeleteItemsFromDB/${f.getItem_Id()}">delete</a></td>
+		<td><a href="${pageContext.request.contextPath}/update_items/${f.getItem_Id()}">update</a></td>
 		<td><input type="checkbox" id="xyz" name="productitems" value="${f.getItem_Id()}"></td>
 		</tr> 
 </c:forEach>
