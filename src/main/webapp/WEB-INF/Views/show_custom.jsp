@@ -10,8 +10,24 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1> Displaying product Page</h1>
+<h1> Displaying customized orders</h1>
 <table border="1">
+	<tr>
+<td><strong>Customize_Id</strong></td>
+<td><strong>Customer_Name</strong></td>
+<td><strong>Phone_no</strong></td>
+<td><strong>Email</strong></td>
+<td><strong>Quantity</strong></td>
+<td><strong>Flavour</strong></td>
+<td><strong>Shape</strong></td>
+<td><strong>Eggless</strong></td>
+<td><strong>Delivery_Date</strong></td>
+<td><strong>Pick</strong></td>
+<td><strong>Message</strong></td>
+<td><strong>Notes</strong></td>
+<td><strong>Customized_Image</strong></td>
+</tr> 
+
 <c:forEach var="a" items="${customlist}">
 <tr>
 <td>${ a.getCustomize_Id()}</td>
