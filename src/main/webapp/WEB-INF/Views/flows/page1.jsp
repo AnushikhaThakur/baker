@@ -129,6 +129,99 @@ myApp.controller('myCtrl',['$scope','CartService',function($scope,$CartService){
 }]);
 
 </script>
+<script type="text/javascript">
+
+var myApp = angular.module('myApp',[]);
+
+myApp.factory('CartService', ['$http', '$q', function($http, $q){
+     
+    var BASE_URL = 'http://localhost:8080/project/';
+    
+    
+    return {
+         
+            fetchAllItemsInCart: function() {
+                    return $http.post(BASE_URL+'getAllItemsInCart')
+                            .then(
+                                    function(response){
+                                        return response.data;
+                                    }, 
+                                    function(errResponse){
+                                        console.error('Error while fetching items');
+                                        return $q.reject(errResponse);
+                                    }
+                            );
+            }         ,
+            removebuttonincart: function(cartid) {
+                return $http.post(BASE_URL+'removebuttonincart',cartid)
+                        .then(
+                                function(response){
+                                    return response.data;
+                                }, 
+                                function(errResponse){
+                                    console.error('Error while fetching items');
+                                    return $q.reject(errResponse);
+                                }
+                        );
+        }
+    };
+ 
+}]);
+
+myApp.controller('myCtrl',['$scope','CartService',function($scope,$CartService){
+    
+    console.log('Cart Controller');    
+    
+    $scope.data = [];
+    
+    $scope.sum = 0;
+    
+    $CartService.fetchAllItemsInCart().then(
+           function(result) {
+               $scope.data = result;
+               console.log(result);
+               for( var i = 0 ; i < $scope.data.length ; i++ )
+               {
+            	   console.log( parseFloat( $scope.data[i].cprice ) );
+                   $scope.sum += parseFloat( $scope.data[i].cprice ) * parseInt( $scope.data[i].ccartquantity );
+               
+                   console.log( $scope.sum );
+               }
+
+           
+           
+           
+           }
+        );
+    
+    $scope.Remove = function(cid)
+    {
+        $CartService.removebuttonincart({"cid":cid}).then(
+               function(result) {
+                   console.log(result.message);
+                   
+                   if( result.message == 'deleted' )
+                   {
+                       $CartService.fetchAllItemsInCart().then(
+                              function(result) {
+                                  $scope.data = result;
+                                  console.log(result);
+                               }
+                           );
+                   }
+                   else
+                   {
+                       alert('Deletion Failure');    
+                   }
+                }
+            );
+
+    }
+    
+}]);
+
+</script>
+
 
 
 
@@ -148,7 +241,7 @@ myApp.controller('myCtrl',['$scope','CartService',function($scope,$CartService){
       
 	  <tr ng-repeat="x in data">
         <td class="col-sm-2"><img id="lightbox" alt="not found" class="popimg  media-object example-image" src="{{x.cimage}}" style="width: 110px; height: 86px;"  /></td>
-		<td class="col-sm-6" style="text-align:left;"><h4>{{x.cpname}}</h4><h6>{{x.ciname}}</h6><h6>Quantity :{{x.ccartquantity}}</h6><h6>INR {{x.cprice}} /piece</h6><h6>Total Amount INR {{ x.ccartquantity*x.cprice }}</h6><h4><input type="button"  class="btn btn-warning" value="Remove From Cart" ng-click="RemoveFromCart(x.cid)" /></h4></td>
+		<td class="col-sm-6" style="text-align:left;"><h4>{{x.cpname}}</h4><h6>{{x.ciname}}</h6><h6>Quantity :{{x.ccartquantity}}</h6><h6>INR {{x.cprice}} /piece</h6><h6>Total Amount INR {{ x.ccartquantity*x.cprice }}</h6><h4><input type="button"  class="btn btn-warning" value="Remove From Cart" ng-click="Remove(x.cid)" /></h4></td>
 		<td class="col-sm-4"><h4>Free Delivery in 3-4 Days.</h4></td>
       
 	  </tr>
