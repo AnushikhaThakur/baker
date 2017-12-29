@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1> pid == item id </h1>
+<h1> choose items under the respective product (pid == item id) </h1>
 
 <form action="${pageContext.request.contextPath}/LinkProductsWithCategory" method="post"> 
 
