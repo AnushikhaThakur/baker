@@ -68,6 +68,34 @@ public class RESTController {
         
         return new ResponseEntity<String>(jsonArray.toJSONString(),HttpStatus.OK);
     }
+      @RequestMapping(value="/removebuttonincart",method=RequestMethod.POST)
+    public ResponseEntity<String> removebuttonincart(@RequestBody String data)
+    {    
+        System.out.println(data);
+        
+        JSONParser jsonParser = new JSONParser();
+        
+        JSONObject responseJSON = new JSONObject();
+        
+        try
+        {
+            
+            JSONObject jsonObject = (JSONObject)jsonParser.parse(data);
+            int cartid = Integer.parseInt(jsonObject.get("cid").toString());
+            cadao.delete(cartid);
+            
+            responseJSON.put("message", "deleted");
+        }
+            catch( Exception e )
+        {
+            e.printStackTrace();
+            responseJSON.put("message", "failed");
+        }
+        
+            
+        return new ResponseEntity<String>(responseJSON.toJSONString(),HttpStatus.OK);
+    }
+  
     
     @RequestMapping(value="/removeFromCart",method=RequestMethod.POST)
     public ResponseEntity<String> removeFromCart()
