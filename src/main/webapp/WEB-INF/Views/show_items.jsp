@@ -10,8 +10,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1> Displaying items Page</h1>
+<h1> Displaying items </h1>
 <table border="1">
+	<tr>
+<td><strong>Item_Id</strong></td>
+<td><strong>Items_Category</strong></td>
+<td><strong>Item_Name</strong></td>
+<td><strong>Item_Price</strong></td>
+<td><strong>ContainsEggOrEggless</strong></td>
+		</tr> 
+
 <c:forEach var="z" items="${Item_list}">
 <tr>
 <td>${ z.getItem_Id()}</td>
