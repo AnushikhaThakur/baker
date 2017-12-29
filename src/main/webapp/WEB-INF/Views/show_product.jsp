@@ -10,8 +10,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1> Displaying product Page</h1>
+<h1> Displaying products</h1>
 <table border="1">
+	<tr>
+<td><strong>Product_Id</strong></td>
+<td><strong>Product_Category</strong></td>
+<td><strong>Product_Name</strong></td>
+<td><strong>Product_Image</strong></td>
+		</tr> 
+
 <c:forEach var="y" items="${Product_list}">
 <tr>
 <td>${ y.getProduct_Id()}</td>
